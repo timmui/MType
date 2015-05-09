@@ -2,11 +2,13 @@ package mtype.nofluxgiven.science;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,19 +27,17 @@ public class MainActivity extends ActionBarActivity {
 
         server = new ServerHandler(this);
 
-        LinearLayout layout = (LinearLayout)findViewById(R.id.layout);
+        RelativeLayout layout = (RelativeLayout)findViewById(R.id.layout);
         displayMessage = (TextView)findViewById(R.id.displayMessage);
-        layout.setOrientation(LinearLayout.VERTICAL);
 
         // Tap Listener
         tapListener = new TapListener();
 
         // Send Message Button
         Button sendMessageButton = (Button)findViewById(R.id.sendMessage);
-        sendMessageButton.setOnClickListener(new View.OnClickListener(){
+        sendMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 server.SendMessage(decoded, "T23SU", "JJMO");
                 Toast.makeText(getApplicationContext(), "Message Sent.", Toast.LENGTH_SHORT).show();
                 tapListener.clearMessage();
@@ -45,6 +45,14 @@ public class MainActivity extends ActionBarActivity {
         });
         Button tap = (Button)findViewById(R.id.tap);
         tap.setOnTouchListener(tapListener);
+
+        Button back = (Button) findViewById(R.id.backspace);
+        back.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick (View v) {
+                tapListener.backSpace();
+            }
+        });
     }
     public static void updateMessage(String message)
     {

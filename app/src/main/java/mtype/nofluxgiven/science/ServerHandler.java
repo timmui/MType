@@ -32,7 +32,7 @@ public class ServerHandler {
         item.Text = text;
         item.Receiver = sender;
         item.Sender = receiver;
-        if(item.Text != null) {
+        if(item.Text != null && !item.Text.isEmpty()) {
             mClient.getTable(Item.class).insert(item, new TableOperationCallback<Item>() {
                 public void onCompleted(Item entity, Exception exception, ServiceFilterResponse response) {
                     if (exception == null) {

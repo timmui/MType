@@ -113,4 +113,12 @@ public class TapListener implements View.OnTouchListener{
         decoded = "";
         MainActivity.updateMessage(decoded +"\n"+ message);
     }
+
+    public void backSpace () {
+        if(decoded.length() > 1 ){
+            message = "";
+            decoded = decoded.substring(0, decoded.length() - 1);
+            MainActivity.updateMessage(decoded);
+        }
+    }
 }
