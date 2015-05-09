@@ -4,6 +4,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +14,12 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        LinearLayout layout = (LinearLayout)findViewById(R.id.layout);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        Button dot = (Button)findViewById(R.id.dot);
+        Button dash = (Button)findViewById(R.id.dash);
+        Button space = (Button)findViewById(R.id.space);
+
     }
 
     @Override
