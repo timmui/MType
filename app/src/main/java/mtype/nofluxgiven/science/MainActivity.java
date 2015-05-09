@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
-import java.util.Timer;
 
 public class MainActivity extends ActionBarActivity {
     private static String message = "";
@@ -18,6 +18,8 @@ public class MainActivity extends ActionBarActivity {
     private static long prev = System.currentTimeMillis();
     private static long cur = System.currentTimeMillis();
     private static String decrypted = "";
+    private static long down = System.currentTimeMillis();
+    private static long up = System.currentTimeMillis();
     private static String id;
     //private static String message;
     private static String recepient;
@@ -28,10 +30,11 @@ public class MainActivity extends ActionBarActivity {
         LinearLayout layout = (LinearLayout)findViewById(R.id.layout);
         displayMessage = (TextView)findViewById(R.id.displayMessage);
         layout.setOrientation(LinearLayout.VERTICAL);
-        Button dot = (Button)findViewById(R.id.dot);
+       // Button dot = (Button)findViewById(R.id.dot);
+
+        /*
         dot.setOnClickListener(new View.OnClickListener() {
 
-            Timer timer = new Timer();
 
             @Override
             public void onClick(View v) {
@@ -51,29 +54,9 @@ public class MainActivity extends ActionBarActivity {
                 message = message + ".";
                 updateMessage(decrypted+message);
             }
-        });
-        Button dash = (Button)findViewById(R.id.dash);
-        dash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        }); */
 
-                prev = cur;
-                cur = System.currentTimeMillis();
-                if ((cur - prev) > 1000){
-                    decrypted += hash(message);
-                    decrypted += "   ";
-                    message = "";
-                }
-                else if ((cur - prev) > 500) {
-                    decrypted += hash(message);
-                    message = "";
-                }
 
-                message = message + "-";
-                updateMessage(decrypted+message);
-
-            }
-        });
         //Button space = (Button)findViewById(R.id.space);
         ///space.setOnClickListener(new View.OnClickListener(){
            // @Override
@@ -93,7 +76,46 @@ public class MainActivity extends ActionBarActivity {
                 decrypted = "";
             }
         });
+        Button dash = (Button)findViewById(R.id.dash);
+        dash.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
 
+                prev = cur;
+                cur = System.currentTimeMillis();
+                if ((cur - prev) > 1000) {
+                    decrypted += hash(message);
+                    decrypted += "   ";
+                    message = "";
+                }
+                else if ((cur - prev) > 400) {
+                    decrypted += hash(message);
+                    message = "";
+                }
+
+
+                switch (event.getAction())
+                {
+                    case MotionEvent.ACTION_DOWN:
+                        down = System.currentTimeMillis();
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        up = System.currentTimeMillis();
+                        if ((up - down)>200) {
+                            message = message + "-";
+                            updateMessage(decrypted + message);
+                        }
+                        else if ((up - down) > 50) {
+                            message = message + ".";
+                            updateMessage(decrypted + message);
+                        }
+                        return true;
+                }
+                updateMessage(decrypted + message);
+                return false;
+
+            }
+        });
     }
     private static void updateMessage(String message)
     {

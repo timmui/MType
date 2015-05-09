@@ -11,16 +11,8 @@
         android:id = "@+id/displayMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <Button
-        android:id = "@+id/dot"
-        android:layout_height = "wrap_content"
-        android:layout_width = "wrap_content"
-        android:text = "DOT" />
-    <Button
-        android:id = "@+id/dash"
-        android:layout_height = "wrap_content"
-        android:layout_width = "wrap_content"
-        android:text = "DASH" />
+
+
     <Button
         android:id = "@+id/space"
         android:layout_height = "wrap_content"
@@ -31,6 +23,13 @@
         android:layout_height = "wrap_content"
         android:layout_width = "wrap_content"
         android:text = "Get Message" />
+    <Button
+        android:id = "@+id/dash"
+        android:layout_height = "200dp"
+        android:layout_width = "500dp"
+        android:layout_gravity="bottom"
+        android:text = "PRESS                                          "
+        />
 
 
 </LinearLayout>
