@@ -11,21 +11,13 @@
         android:id = "@+id/displayMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
     <Button
-        android:id = "@+id/dot"
+        android:id = "@+id/tap"
         android:layout_height = "wrap_content"
         android:layout_width = "wrap_content"
-        android:text = "DOT" />
-    <Button
-        android:id = "@+id/dash"
-        android:layout_height = "wrap_content"
-        android:layout_width = "wrap_content"
-        android:text = "DASH" />
-    <Button
-        android:id = "@+id/space"
-        android:layout_height = "wrap_content"
-        android:layout_width = "wrap_content"
-        android:text = "SPACE" />
+        android:text = "Tap" />
+
     <Button
         android:id = "@+id/sendMessage"
         android:layout_height = "wrap_content"
