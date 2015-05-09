@@ -1,5 +1,6 @@
 package mtype.nofluxgiven.science;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,21 +57,22 @@ public class MainActivity extends ActionBarActivity {
         tap.setOnTouchListener(tapListener);
 
         Button back = (Button) findViewById(R.id.backspace);
-        back.setOnClickListener(new View.OnClickListener(){
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View v) {
+            public void onClick(View v) {
                 tapListener.backSpace();
             }
         });
 
-        Button getButton = (Button) findViewById(R.id.getMessage);
-        getButton.setOnClickListener(new View.OnClickListener() {
+        Button inboxButton = (Button) findViewById(R.id.inbox);
+        inboxButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                server.ReceiveMessages();
-                //displayMessage.setText(receivedMessages.get(0).Text);
+                Intent intent = new Intent(getApplicationContext(), Inbox.class);
+                startActivity(intent);
             }
         });
+
     }
     public static void updateMessage(String message)
     {

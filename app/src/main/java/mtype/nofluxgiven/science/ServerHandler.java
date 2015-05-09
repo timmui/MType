@@ -1,7 +1,13 @@
 package mtype.nofluxgiven.science;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+import android.widget.RelativeLayout.LayoutParams;
 
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.MobileServiceList;
@@ -15,8 +21,10 @@ import java.net.MalformedURLException;
  */
 public class ServerHandler {
     private MobileServiceClient mClient;
+    public MobileServiceList<Item> messageList;
+    public Boolean finished = false;
 
-    public ServerHandler (MainActivity a){
+    public ServerHandler (Activity a){
         // REST Client
         try {
             mClient = new MobileServiceClient(
@@ -29,6 +37,10 @@ public class ServerHandler {
             System.out.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    public boolean isFinished (){
+        return finished;
     }
 
     public void SendMessage(String text, String sender, String receiver) {
@@ -51,9 +63,20 @@ public class ServerHandler {
         }
     }
 
-    public void ReceiveMessages() {
-        MainActivity.updateMessage("start");
+    private void setMessages (MobileServiceList<Item> data) {
+        messageList = data;
+        Log.i("PROGRESS", "Still Loading." );
+        finished = true;
+    }
 
+    public MobileServiceList<Item> getMessages () {
+        if (messageList != null) {
+            return messageList;
+        }
+        return null;
+    }
+
+    public void ReceiveMessages() {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
@@ -61,8 +84,9 @@ public class ServerHandler {
                     final MobileServiceList<Item> result =
                             mClient.getTable(Item.class).where().field("Receiver").eq("Jack").execute().get();
                     for (Item item : result) {
-                        Log.i("MYACTIVITY", "Message to Jack: " + item.Text);
+                        Log.i("MESSAGES", "Message to Jack: " + item.Text);
                     }
+                    setMessages(result);
                 } catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
                     e.printStackTrace();

@@ -11,43 +11,42 @@
         android:id = "@+id/displayMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"/>
+        android:layout_marginTop="34dp" />
 
     <Button
         android:id = "@+id/tap"
         android:layout_height = "wrap_content"
         android:layout_width = "wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/displayMessage"
-        android:text = "Tap" />
+        android:text = "Tap"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/inbox" />
 
     <Button
         android:id="@+id/backspace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tap"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
-        android:text="Backspace"/>
+        android:text="Backspace"
+        android:layout_above="@+id/sendMessage"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id = "@+id/sendMessage"
         android:layout_height = "wrap_content"
         android:layout_width = "wrap_content"
+        android:text = "Send Message"
+        android:layout_above="@+id/inbox"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/backspace"
-        android:layout_marginTop="12dp"
-        android:text = "Send Message" />
+        android:layout_marginBottom="68dp" />
 
     <Button
-        android:id = "@+id/getMessage"
+        android:id = "@+id/inbox"
         android:layout_height = "wrap_content"
         android:layout_width = "wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/sendMessage"
-        android:layout_marginTop="12dp"
-        android:text = "Get Message" />
+        android:text = "@string/inbox"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
