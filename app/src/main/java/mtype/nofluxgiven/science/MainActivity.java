@@ -4,22 +4,52 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
-
+    private static String message = "";
+    private static TextView displayMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         LinearLayout layout = (LinearLayout)findViewById(R.id.layout);
+        displayMessage = (TextView)findViewById(R.id.displayMessage);
         layout.setOrientation(LinearLayout.VERTICAL);
         Button dot = (Button)findViewById(R.id.dot);
+        dot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                message = message + ".";
+                updateMessage();
+            }
+        });
         Button dash = (Button)findViewById(R.id.dash);
+        dash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                message = message + "-";
+                updateMessage();
+            }
+        });
         Button space = (Button)findViewById(R.id.space);
+        space.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                message = message + " ";
+                updateMessage();
+            }
+        });
 
+
+    }
+    private static void updateMessage()
+    {
+        displayMessage.setText(message);
     }
 
     @Override
