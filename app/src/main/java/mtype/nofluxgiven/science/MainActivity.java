@@ -1,5 +1,6 @@
 package mtype.nofluxgiven.science;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Layout;
@@ -11,6 +12,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
+import com.microsoft.windowsazure.mobileservices.MobileServiceList;
+
+import java.net.MalformedURLException;
 
 public class MainActivity extends ActionBarActivity {
     private static TapListener tapListener;
@@ -51,6 +57,15 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick (View v) {
                 tapListener.backSpace();
+            }
+        });
+
+        Button getButton = (Button) findViewById(R.id.getMessage);
+        getButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                server.ReceiveMessages();
+                //displayMessage.setText(receivedMessages.get(0).Text);
             }
         });
     }

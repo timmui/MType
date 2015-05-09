@@ -40,5 +40,14 @@
         android:layout_marginTop="12dp"
         android:text = "Send Message" />
 
+    <Button
+        android:id = "@+id/getMessage"
+        android:layout_height = "wrap_content"
+        android:layout_width = "wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/sendMessage"
+        android:layout_marginTop="12dp"
+        android:text = "Get Message" />
+
 
 </RelativeLayout>

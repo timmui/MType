@@ -1,6 +1,10 @@
 package mtype.nofluxgiven.science;
 
+import android.os.AsyncTask;
+import android.util.Log;
+
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
+import com.microsoft.windowsazure.mobileservices.MobileServiceList;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 import com.microsoft.windowsazure.mobileservices.table.TableOperationCallback;
 
@@ -47,6 +51,23 @@ public class ServerHandler {
     }
 
     public void ReceiveMessages() {
+        MainActivity.updateMessage("start");
 
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    final MobileServiceList<Item> result =
+                            mClient.getTable(Item.class).where().field("Sender").eq("JJMO").execute().get();
+                    for (Item item : result) {
+                        Log.i("MYACTIVITY", "Read object with ID " + item.Id);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Error: " + e.getMessage());
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        }.execute();
     }
 }
