@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Layout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,7 +45,8 @@ public class MainActivity extends ActionBarActivity {
         sendMessageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                server.SendMessage(decoded, "T23SU", "JJMO");
+                Log.i("MESSAGE", "Sending message: " + decoded);
+                server.SendMessage(decoded, "Jack", "Tim");
                 Toast.makeText(getApplicationContext(), "Message Sent.", Toast.LENGTH_SHORT).show();
                 tapListener.clearMessage();
             }
@@ -71,8 +73,10 @@ public class MainActivity extends ActionBarActivity {
     }
     public static void updateMessage(String message)
     {
-        if (message != null)
-        displayMessage.setText(message);
+        if (message != null) {
+            displayMessage.setText(message);
+            decoded = message;
+        }
     }
 
     @Override

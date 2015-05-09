@@ -41,9 +41,10 @@ public class ServerHandler {
                 public void onCompleted(Item entity, Exception exception, ServiceFilterResponse response) {
                     if (exception == null) {
                         // Insert succeeded
-
+                        Log.i("UPLOAD", "Message Succeeded.");
                     } else {
                         // Insert failed
+                        Log.i("UPLOAD", "Message Failed.");
                     }
                 }
             });
@@ -58,9 +59,9 @@ public class ServerHandler {
             protected Void doInBackground(Void... params) {
                 try {
                     final MobileServiceList<Item> result =
-                            mClient.getTable(Item.class).where().field("Sender").eq("JJMO").execute().get();
+                            mClient.getTable(Item.class).where().field("Receiver").eq("Jack").execute().get();
                     for (Item item : result) {
-                        Log.i("MYACTIVITY", "Read object with ID " + item.Id);
+                        Log.i("MYACTIVITY", "Message to Jack: " + item.Text);
                     }
                 } catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
