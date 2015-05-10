@@ -18,7 +18,7 @@ import com.microsoft.windowsazure.mobileservices.MobileServiceList;
 public class Inbox extends ActionBarActivity {
     //SERVER
     private ServerHandler server;
-    private MobileServiceList<Item> inboxList;
+    private MobileServiceList<Messages> inboxList;
     public TableLayout inboxTable;
 
     @Override
@@ -55,8 +55,8 @@ public class Inbox extends ActionBarActivity {
                         row.addView(sender);
                         row.addView(receiver);
 
-                        inbox.inboxTable.addView(row);
-                 */
+                        inbox.inboxTable.addView(row);*/
+
             }
         });
 

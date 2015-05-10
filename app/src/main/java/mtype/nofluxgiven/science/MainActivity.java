@@ -48,7 +48,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Log.i("MESSAGE", "Sending message: " + decoded);
-                server.SendMessage(decoded, "Android", "Microsoft");
+                server.SendMessage(decoded, "Pebble_Tim", "Android_Tony");
                 Toast.makeText(getApplicationContext(), "Message Sent.", Toast.LENGTH_SHORT).show();
                 tapListener.clearMessage();
             }
@@ -74,14 +74,17 @@ public class MainActivity extends ActionBarActivity {
         });
 
     }
-    public static void updateMessage(String message)
+    public static void updateDisplay(String message)
     {
         if (message != null) {
             displayMessage.setText(message);
-            decoded = message;
         }
     }
-
+    public static void updateMessage(String message)
+    {
+        if (message != null)
+            decoded = message;
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

@@ -24,10 +24,10 @@ public class TapListener implements View.OnTouchListener{
         cur = System.currentTimeMillis();
         if ((cur - prev) > 1000) {
             decoded += hash(message);
-            decoded += "   ";
+            decoded += " ";
             message = "";
         }
-        else if ((cur - prev) > 400) {
+        else if ((cur - prev) > 500) {
             decoded += hash(message);
             message = "";
         }
@@ -43,16 +43,16 @@ public class TapListener implements View.OnTouchListener{
                 return true;
             case MotionEvent.ACTION_UP:
                 up = System.currentTimeMillis();
-                if ((up - down) > 200) {
+                if ((up - down) > 300) {
                     message = message + "-";
-                    MainActivity.updateMessage(decoded +"\n"+ message);
+                    update();
                 } else if ((up - down) > 50) {
                     message = message + ".";
-                    MainActivity.updateMessage(decoded +"\n"+ message);
+                    update();
                 }
                 return true;
         }
-        MainActivity.updateMessage(decoded +"\n"+ message);
+        update();
         return false;
 
     }
@@ -111,14 +111,17 @@ public class TapListener implements View.OnTouchListener{
     public void clearMessage (){
         message = "";
         decoded = "";
-        MainActivity.updateMessage(decoded +"\n"+ message);
+        update();
     }
-
+    private void update(){
+        MainActivity.updateDisplay(decoded +"\n"+ message);
+        MainActivity.updateMessage(decoded );
+    }
     public void backSpace () {
         if(decoded.length() > 1 ){
             message = "";
             decoded = decoded.substring(0, decoded.length() - 1);
-            MainActivity.updateMessage(decoded);
+            update();
         }
     }
 }
