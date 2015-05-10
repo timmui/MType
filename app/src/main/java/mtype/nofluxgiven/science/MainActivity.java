@@ -48,7 +48,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Log.i("MESSAGE", "Sending message: " + decoded);
-                server.SendMessage(decoded, "Jack", "Tim");
+                server.SendMessage(decoded, "Android", "Microsoft");
                 Toast.makeText(getApplicationContext(), "Message Sent.", Toast.LENGTH_SHORT).show();
                 tapListener.clearMessage();
             }

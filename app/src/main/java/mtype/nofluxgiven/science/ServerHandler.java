@@ -28,7 +28,7 @@ public class ServerHandler {
         // REST Client
         try {
             mClient = new MobileServiceClient(
-                    "https://ecetitanic-mtype.azure-mobile.net/",
+                    "https://ecetitanic-mtype.azure-mobile.net/api/mtype",
                     "YTuapDdxHvjrxaoUaQqVcHrduOibvW98",
                     a
             );
@@ -82,7 +82,7 @@ public class ServerHandler {
             protected Void doInBackground(Void... params) {
                 try {
                     final MobileServiceList<Item> result =
-                            mClient.getTable(Item.class).where().field("Receiver").eq("Jack").execute().get();
+                            mClient.getTable(Item.class).where().field("Receiver").eq("Microsoft").execute().get();
                     for (Item item : result) {
                         Log.i("MESSAGES", "Message to Jack: " + item.Text);
                     }
