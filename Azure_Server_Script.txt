@@ -1,0 +1,39 @@
+// Writtern by Jhony Guan
+// Azure Custom API for Azure Mobile WebService Server
+// for WearHacks Toronto 2015
+// on 05/09/2015
+
+exports.post = function(request, response) {
+    var tables = request.service.tables;
+    var messageTable = tables.getTable('Messages');
+    
+    // Parameters
+    var text = request.query.text;
+    var sender = request.query.sender;
+    var receiver = request.query.receiver;
+    
+    var message = {
+        text: request.query.text,
+        sender: request.query.sender,
+        receiver: request.query.receiver
+    };
+    
+    messageTable.insert(message, {
+        success: function (){}
+    });
+
+    response.send(statusCodes.OK, request.query.text);
+};
+
+exports.get = function(request, response) {
+    request.service.mssql.query('SELECT * FROM Messages WHERE receiver=\''+ request.query.user +'\'', {
+        success: function(results) {
+            console.log(results);
+            response.send(statusCodes.OK, results );
+        },
+        error: function(err) {
+            console.log("error is: " + err);
+            response.send(statusCodes.OK, {statuts: 'Error. ' + request.query.user} );
+        }
+    }); 
+};
