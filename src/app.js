@@ -1,5 +1,5 @@
 /**
- * MType
+ * MType Send
  */
 var ajax = require('ajax');
 var UI = require('ui');
@@ -7,8 +7,8 @@ var UI = require('ui');
 var Vibe = require('ui/vibe');
 var Settings = require('settings');
 
-var sender = 'Pebble';
-var receiver = 'Jhony';
+var sender = 'Pebble_Tim';
+var receiver = 'Tim';
 
 var hash=  {".-": "a", 
                         "-...":"b",
