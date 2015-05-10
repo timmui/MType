@@ -1,112 +1,55 @@
 /**
- * MType
+ * Welcome to Pebble.js!
+ *
+ * This is where you write your app.
  */
-var ajax = require('ajax');
+
 var UI = require('ui');
-// Import the Vibe object
-var Vibe = require('ui/vibe');
-var Settings = require('settings');
+var ajax = require('ajax');
+var user = 'Tim';
 
-var sender = 'Pebble';
-var receiver = 'Jhony';
+// Make a list of menu items
+var messageList = [];
 
-var hash=  {".-": "a", 
-                        "-...":"b",
-                        "-.-.":"c",
-                        "-..":"d",
-                        ".":"e",
-                        "..-.":"f",
-                        "--.":"g",
-                        "....":"h",
-                        "..":"i",
-                        ".---":"j",
-                        "-.-":"k",
-                        ".-..":"l",
-                        "--":"m",
-                        "-.":"n",
-                        "---":"o",
-                        ".--.":"p",
-                        "--.-":"q",
-                        ".-.":"r",
-                        "...":"s",
-                        "-":"t",
-                        "..-":"u",
-                        "...-":"v",
-                        ".--":"w",
-                        "-..-":"x",
-                        "-.--":"y",
-                        "--..":"z"};
-
-
-// Create a Card with title and subtitle
-var card = new UI.Card({
-  title:'MType',
-  subtitle:'Tap Away...'
-});
-
-// Message
-var message = "";
-var morseMessage = '';
-
-var selectCount = 0;
-
-card.on('click', function(e) {
-  // Button Detection
-  if(e.button == 'down'){
-    // Dot
-    selectCount = 0;
-    morseMessage += '.';
-  }
-  else if(e.button == 'up'){
-    // Dash
-    selectCount = 0;
-    morseMessage += '-';
-  }
-  else if(e.button == 'select' && selectCount == 2){
-    //Send Message
-    /************************************* NETWORKING *******************************************/
-
-     ajax(
-        {
-          url: 'http://ecetitanic-mtype.azure-mobile.net/api/mtype?text='+message+'&sender='+sender+'&receiver='+receiver,
-          method: 'post'
-        },
-        function(data, status, request) {
-          console.log('Messages: ' );
-        },
-        function(error, status, request) {
-          console.log('The ajax request failed: ' + error);
-        }
+ajax(
+  {
+    url: 'http://ecetitanic-mtype.azure-mobile.net/api/mtype?user='+user,
+  },
+  function(data, status, request) {
+    var temp = data.substring(2,data.length-2);
     
-     );
-    // Trigger a vibration
-    Vibe.vibrate('short');
+    var messages = temp.split (/},{/);
     
-    selectCount = 0;
-    message = "";
-    morseMessage = "";
-
-  }
-  else if(e.button == 'select' && selectCount == 1){
-    //Space
-
-    selectCount = 2;
-    message += " ";
-    morseMessage = "";
-  }
-  else if(e.button == 'select' && selectCount === 0){
-    //Done Letter
-    selectCount = 1;
-    message += (hash[morseMessage] !== undefined)? hash[morseMessage] : "";
-    morseMessage = "";
+    console.log("len "+messages.length);
+    console.log(messages[0]);
+    console.log(messages[1]);
+    console.log(messages[2]);
+    console.log(messages[3]);
     
+    for (var i = 0; i < messages.length; i++){
+      var a = messages[i].substring(220,messages[i].length-1);
+      var obj = a.split(/,|:|"/);
+      console.log ("OBJ: "+obj[3]+" "+obj[9]);
+      
+      messageList.push({
+        title: obj[9],
+        subtitle: obj[3]
+      });
+    }
+    console.log('Messages: '+ data);
+    
+    // Create the Menu, supplying the list of fruits
+    var inboxMenu = new UI.Menu({
+      sections: [{
+        title: 'Messages',
+        items: messageList
+      }]
+    });
+    
+    // Show the Menu
+    inboxMenu.show();
+  },
+  function(error, status, request) {
+    console.log('The ajax request failed: ' + error);
   }
-  // Update UI
-  card.subtitle(morseMessage+" ");
-  card.body (message);
-  
-});
-
-// Display the Card
-card.show();
-
+);

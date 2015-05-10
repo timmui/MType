@@ -4,7 +4,7 @@
         ""
     ],
     "companyName": "timmui123@gmail.com",
-    "longName": " MType Inbox",
+    "longName": "MType Inbox",
     "projectType": "pebblejs",
     "resources": {
         "media": [
@@ -32,7 +32,7 @@
         ]
     },
     "shortName": "Inbox",
-    "uuid": "6373f195-8b88-4b31-b583-ef59025b7a4b",
+    "uuid": "01327df2-e3d7-4385-b519-884515cea910",
     "versionCode": 1,
     "versionLabel": "1.0",
     "watchapp": {
