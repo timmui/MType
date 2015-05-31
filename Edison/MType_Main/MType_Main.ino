@@ -1,5 +1,3 @@
-
-
 /**
 * MType
 */
@@ -53,6 +51,10 @@ void setup()
   hashMap[25]("--..","z");
   
   Serial.begin(9600);
+  Wire.begin();
+  QTouch.reset(); //resets touch sensor
+  QTouch.calibrate(); //calibrates sensor
+  QTouch.setNTHRForKey(6, 0); //sets negative threshold
   Serial.println("Connected to wifi");
   
 //  Serial.println(hashMap.getValueOf("name"));
@@ -64,39 +66,6 @@ void setup()
   //printWifiStatus();
 }
 
-//struct nlist { /* table entry: */
-//   struct nlist *next; /* next entry in chain */
-//   char *name; /* defined name */
-//   char *defn; /* replacement text */
-//};
-//{".-": "a", 
-//"-...":"b",
-//"-.-.":"c",
-//"-..":"d",
-//".":"e",
-//"..-.":"f",
-//"--.":"g",
-//"....":"h",
-//"..":"i",
-//".---":"j",
-//"-.-":"k",
-//".-..":"l",
-//"--":"m",
-//"-.":"n",
-//"---":"o",
-//".--.":"p",
-//"--.-":"q",
-//".-.":"r",
-//"...":"s",
-//"-":"t",
-//"..-":"u",
-//"...-":"v",
-//".--":"w",
-//"-..-":"x",
-//"-.--":"y",
-//"--..":"z"};
-
-
 // Message
 String message = "";
 String morseMessage = "";
@@ -106,18 +75,17 @@ int selectCount = 0;
 void post(String message){
   while(1)
   String yourdata = message;
-  char server1[] = "ecetitanic-mtype.azure-mobile.net/api/mtype?text=text&sender=you&receiver=microsoft";
+  char server1[] = "ecetitanic-mtype.azure-mobile.net";
   if (client.connect(server1, 80)) {
     Serial.println("connected to server");
     // Make a HTTP request:
-    client.println("POST /post.php HTTP/1.1");
-    client.println("Host: azure-mobile.net");
-    client.println("User-Agent: Arduino/1.0");
+    client.println("POST /api/mtype?text=text&sender=you&receiver=microsoft HTTP/1.1");
+    client.println("Host: anic-mtype.azure-mobile.azure-mobile.net");
+    client.println("User-Agent: IntelEdison/1.1");
     client.println("Content-Type: application/x-www-form-urlencoded; charset=UTF-8");
     client.println("Connection: close");
     client.print("Content-Length: ");
     client.println(yourdata.length());
-
 
     client.println();
     client.println(yourdata);
@@ -169,5 +137,5 @@ void loop()
  }
  Serial.println(message);
  post(message);
- delay(10);
+ delay(1000);
 }
