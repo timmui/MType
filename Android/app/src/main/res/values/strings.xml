@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MType</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_inbox">Inbox</string>
+    <string name="SendMessage">Send Message</string>
+    <string name="inbox">Inbox</string>
+    <string name="getMessages">Get Messages</string>
+</resources>
