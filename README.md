@@ -1,5 +1,5 @@
 # MType
-Messaging application that uses morse code as input for wearables such as the Pebble smartwatch and the Intel Edison to write messages that can be sent to a server hosted on Microsoft Azure via a custom REST webservice. Devices can then obtain messages sent to their inbox from the server. Compatible with: Pebble Smartwatch, Android and Intel Edison. Created during Wearhacks Toronto.
+Messaging application that uses morse code as input for wearables such as the Pebble smartwatch and the Intel Edison to write messages that can be sent to a server hosted on Microsoft Azure via a custom REST webservice. Devices can then obtain messages sent to their inbox from the server. Compatible with: Pebble Smartwatch, Android and Intel Edison. Created during Wearhacks Toronto. Winner of Best Pebble App at WearHacks TO 2015.
 
 WearHacks TO Team:
 <ul>
