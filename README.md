@@ -3,17 +3,17 @@ Messaging application that uses morse code as input for wearables such as the Pe
 
 WearHacks TO Team:
 
-⋅⋅⋅Tim Mui
+Tim Mui
 
-⋅⋅⋅Tony Su
+Tony Su
 
-⋅⋅⋅Jhony Guan
+Jhony Guan
 
-⋅⋅⋅Jack Mo
+Jack Mo
 
-⋅⋅⋅Pragash Siva
+Pragash Siva
 
-⋅⋅⋅Justin Paulin
+Justin Paulin
 
 <h3>Pebble App Screenshots</h3>
 <img src='http://timmui.me/img/other/mtype/send.png' alt='MType Send'>
