@@ -1,5 +1,14 @@
 # MType
-Application that translates morse code input into english and backwards. Input can come from multiple different devices. The input will be sent to a server where it will be processed and then a response will be sent from the server back to the device containing the corresponding output.
+Messaging application that uses morse code as input for wearables such as the Pebble smartwatch and the Intel Edison to write messages that can be sent to a server hosted on Microsoft Azure. Devices can then obtained messages sent to their inbox from the server. Compatible with: Pebble Smartwatch, Android and Intel Edison. Created during Wearhacks Toronto.
+
+WearHacks TO Team:
+
+Tim Mui
+Tony Su
+Jhony Guan
+Jack Mo
+Pragash Siva
+Justin Paulin
 
 <h3>Pebble App Screenshots</h3>
 <img src='http://timmui.me/img/other/mtype/send.png' alt='MType Send'>
