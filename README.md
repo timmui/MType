@@ -17,5 +17,5 @@ WearHacks TO Team:
 </ul>
 
 <h3>Pebble App Screenshots</h3>
-<img src='http://timmui.me/img/other/mtype/send.png' alt='MType Send'>
-<img src='http://timmui.me/img/other/mtype/inbox.png' alt='MType Inbox'>
+<img src='http://timmui.com/img/other/mtype/send.png' alt='MType Send'>
+<img src='http://timmui.com/img/other/mtype/inbox.png' alt='MType Inbox'>
